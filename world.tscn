@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmrvfrtctwy48"]
+[gd_scene load_steps=8 format=3 uid="uid://bmrvfrtctwy48"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_xdihb"]
 [ext_resource type="PackedScene" uid="uid://bhj8vp1is8byd" path="res://level_tile_map.tscn" id="1_xjwld"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dgj28p6emgv87" path="res://bomb.tscn" id="3_xcgue"]
 [ext_resource type="PackedScene" uid="uid://cxlrwdgxhrbi8" path="res://pig.tscn" id="4_rfv0s"]
 [ext_resource type="PackedScene" uid="uid://ia1d30b61w57" path="res://level_completed.tscn" id="6_s5fw8"]
+[ext_resource type="PackedScene" uid="uid://dj3ok850aw0r7" path="res://fps_counter.tscn" id="7_74mos"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_xdihb")
@@ -57,6 +58,17 @@ position = Vector2(547, 81)
 
 [node name="LevelCompleted" parent="CanvasLayer" instance=ExtResource("6_s5fw8")]
 visible = false
+
+[node name="FpsCounter" parent="CanvasLayer" instance=ExtResource("7_74mos")]
+anchors_preset = -1
+anchor_left = 0.321
+anchor_top = 0.415
+anchor_right = 0.321
+anchor_bottom = 0.419
+offset_left = -106.44
+offset_top = 50.6
+offset_right = -46.44
+offset_bottom = 72.16
 
 [connection signal="playerDiedFromExplosion" from="Bomb" to="Player" method="_on_bomb_player_died_from_explosion"]
 [connection signal="playerDiedFromExplosion" from="Bomb2" to="Player" method="_on_bomb_player_died_from_explosion"]
