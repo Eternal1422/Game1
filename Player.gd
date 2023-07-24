@@ -43,7 +43,7 @@ func _physics_process(delta):
 		
 func handle_attack():
 	if Input.is_action_just_pressed("attack"):
-		GlobalVariables.currently_attacking = true
+		Global.currently_attacking = true
 		movement_data.speed = movement_data.speed/2
 	
 func apply_gravity(delta):
@@ -81,10 +81,10 @@ func apply_air_resistance(direction, delta):
 		velocity.x = move_toward(velocity.x, 0, movement_data.air_resistance * delta)
 	
 func update_animations(direction):
-	if GlobalVariables.currently_attacking == true:
+	if Global.currently_attacking == true:
 		animated_sprite_2d.play("attack")
 		await animated_sprite_2d.animation_finished
-		GlobalVariables.currently_attacking = false
+		Global.currently_attacking = false
 		movement_data.speed = 150
 		return
 		

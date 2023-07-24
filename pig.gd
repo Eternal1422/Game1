@@ -70,14 +70,14 @@ func playerHit():
 	emit_signal("characterHit")
 
 func deal_damage():
-	if player_in_attack and GlobalVariables.currently_attacking == true and can_take_damage.time_left == 0:
+	if player_in_attack and Global.currently_attacking == true and can_take_damage.time_left == 0:
 		health_bar.value -= 40
 		can_take_damage.start()
 		if health_bar.value <= 0: 
 			queue_free()
 			var pigs = get_tree().get_nodes_in_group("Pigs")
 			if pigs.size() == 1:
-				print("Level Completed!")
+				Global.level_completed.emit()
 
 		
 func _on_player_attack_area_area_entered(area):
