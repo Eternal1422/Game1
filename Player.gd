@@ -116,7 +116,7 @@ func playerDied():
 	health_bar.min_value = 0
 
 func _on_bomb_player_died_from_explosion():
-	health_bar.value -= 85
+	health_bar.value -= 90
 	if health_bar.value <= 0:
 		playerDied()
 	
