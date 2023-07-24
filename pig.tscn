@@ -391,8 +391,7 @@ size = Vector2(13.5, 22)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yon7q"]
 size = Vector2(13.5, 22)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5h0cl"]
-size = Vector2(63.25, 53.25)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbi7e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh2oy"]
 size = Vector2(18, 16)
@@ -412,9 +411,8 @@ libraries = {
 }
 
 [node name="DetectionArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 8
-collision_mask = 3
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(3, 5)
@@ -423,7 +421,7 @@ shape = SubResource("RectangleShape2D_3y8uf")
 [node name="RightAttackArea" type="Area2D" parent="."]
 visible = false
 collision_layer = 8
-collision_mask = 3
+collision_mask = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="RightAttackArea"]
 position = Vector2(9.25, 4)
@@ -432,19 +430,19 @@ shape = SubResource("RectangleShape2D_u011n")
 [node name="LeftAttackArea" type="Area2D" parent="."]
 visible = false
 collision_layer = 8
-collision_mask = 3
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftAttackArea"]
 position = Vector2(-4.25, 4)
 shape = SubResource("RectangleShape2D_yon7q")
 
-[node name="PlayerAttackArea" type="Area2D" parent="."]
+[node name="AttackHitBox" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 3
+collision_mask = 18
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox"]
 position = Vector2(3, 5)
-shape = SubResource("RectangleShape2D_5h0cl")
+shape = SubResource("RectangleShape2D_gbi7e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -462,7 +460,7 @@ value = 100.0
 show_percentage = false
 
 [node name="CanTakeDamage" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 0.65
 one_shot = true
 
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
@@ -471,5 +469,5 @@ one_shot = true
 [connection signal="area_exited" from="RightAttackArea" to="." method="_on_right_attack_area_area_exited"]
 [connection signal="area_entered" from="LeftAttackArea" to="." method="_on_left_attack_area_area_entered"]
 [connection signal="area_exited" from="LeftAttackArea" to="." method="_on_left_attack_area_area_exited"]
-[connection signal="area_entered" from="PlayerAttackArea" to="." method="_on_player_attack_area_area_entered"]
-[connection signal="area_exited" from="PlayerAttackArea" to="." method="_on_player_attack_area_area_exited"]
+[connection signal="area_entered" from="AttackHitBox" to="." method="_on_attack_hit_box_area_entered"]
+[connection signal="area_exited" from="AttackHitBox" to="." method="_on_attack_hit_box_area_exited"]

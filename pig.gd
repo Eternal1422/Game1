@@ -3,11 +3,11 @@ extends CharacterBody2D
 signal characterHit
 
 var speed = 60.0
-var player_in_attack = false
 var player_chase = false 
 var player = null
 var state = ''
 var attacking = false
+var in_attack_hitbox = false
 
 @onready var can_take_damage = $CanTakeDamage
 @onready var health_bar = $HealthBar
@@ -70,18 +70,18 @@ func playerHit():
 	emit_signal("characterHit")
 
 func deal_damage():
-	if player_in_attack and Global.currently_attacking == true and can_take_damage.time_left == 0:
-		health_bar.value -= 40
+	print(can_take_damage.time_left)
+	if in_attack_hitbox and Global.enemy_in_range and Global.currently_attacking == true and can_take_damage.time_left == 0:
 		can_take_damage.start()
+		health_bar.value -= 40
 		if health_bar.value <= 0: 
 			queue_free()
 			var pigs = get_tree().get_nodes_in_group("Pigs")
 			if pigs.size() == 1:
 				Global.level_completed.emit()
 
-		
-func _on_player_attack_area_area_entered(area):
-	player_in_attack = true
-	
-func _on_player_attack_area_area_exited(area):
-	player_in_attack = false
+func _on_attack_hit_box_area_entered(area):
+	in_attack_hitbox = true
+
+func _on_attack_hit_box_area_exited(area):
+	in_attack_hitbox = false
