@@ -5,6 +5,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+@onready var player = $"."
 @onready var starting_position = global_position 
 @onready var collision_shape_2d = $HazardDetector/CollisionShape2D
 @onready var collision_shape = $CollisionShape
@@ -16,6 +17,7 @@ const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var air_jump = false
 var ranleft = false
+var state = ''
 
 func _physics_process(delta):
 	if invincibility_timer.time_left > 0:
@@ -40,7 +42,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	update_animations(direction)
-		
+	
 func handle_attack():
 	if Input.is_action_just_pressed("attack"):
 		Global.currently_attacking = true
@@ -82,24 +84,25 @@ func apply_air_resistance(direction, delta):
 	
 func update_animations(direction):
 	if Global.currently_attacking == true:
-		animated_sprite_2d.play("attack")
+		state = "attack"
+		animated_sprite_2d.play(state)
 		await animated_sprite_2d.animation_finished
 		Global.currently_attacking = false
 		movement_data.speed = 150
 		return
-		
+
 	if direction != 0:
 		if direction < 0:
-			animated_sprite_2d.play("runleft")
-			ranleft = true
+			state = "run"
+			player.scale.x = scale.y * -1
 		else:
-			animated_sprite_2d.play("runright")
-			ranleft = false
+			state = "run"
+			player.scale.x = scale.y * 1
 	else:
-		if ranleft:
-			animated_sprite_2d.play("idleleft")
-		else:
-			animated_sprite_2d.play("idleright")
+		state = "idle"
+			
+	animated_sprite_2d.play(state)
+	
 	if not is_on_floor():
 #		animated_sprite_2d.play("jump")
 		pass
