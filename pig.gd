@@ -9,6 +9,7 @@ var state = ''
 var attacking = false
 var in_attack_hitbox = false
 
+@onready var pig = $"."
 @onready var can_take_damage = $CanTakeDamage
 @onready var health_bar = $HealthBar
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -22,15 +23,16 @@ func _physics_process(delta):
 		if not is_on_floor():
 			velocity.y += gravity * delta
 		var direction = (player.global_position - global_position).normalized()
-		if direction.x > 0:
-			state = 'runright'
+		if direction.x < 0:
+			pig.scale.x = scale.y * 1
 		else:
-			state = 'runleft'
+			pig.scale.x = scale.y * -1
+		state = 'run'
 		velocity.x = move_toward(velocity.x, speed * direction.x, 200 * delta)
 		move_and_slide()
 		animated_sprite_2d.play(state)  
 	elif not attacking:
-		state = 'idleleft'
+		state = 'idle'
 		animated_sprite_2d.play(state)  
 
 func _on_detection_area_area_entered(area):
@@ -70,7 +72,6 @@ func playerHit():
 	emit_signal("characterHit")
 
 func deal_damage():
-	print(can_take_damage.time_left)
 	if in_attack_hitbox and Global.enemy_in_range and Global.currently_attacking == true and can_take_damage.time_left == 0:
 		can_take_damage.start()
 		health_bar.value -= 40
