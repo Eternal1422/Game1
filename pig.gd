@@ -15,13 +15,14 @@ var in_attack_hitbox = false
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-func _physics_process(delta):
-	deal_damage()
 	
+func _physics_process(delta):
+	
+	deal_damage()
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		
 	if player_chase and not attacking:
-		if not is_on_floor():
-			velocity.y += gravity * delta
 		var direction = (player.global_position - global_position).normalized()
 		if direction.x < 0:
 			pig.scale.x = scale.y * 1
@@ -30,7 +31,8 @@ func _physics_process(delta):
 		state = 'run'
 		velocity.x = move_toward(velocity.x, speed * direction.x, 200 * delta)
 		move_and_slide()
-		animated_sprite_2d.play(state)  
+		animated_sprite_2d.play(state
+		)  
 	elif not attacking:
 		state = 'idle'
 		animated_sprite_2d.play(state)  
@@ -78,6 +80,7 @@ func deal_damage():
 		if health_bar.value <= 0: 
 			queue_free()
 			var pigs = get_tree().get_nodes_in_group("Pigs")
+			pig.remove_from_group("Pigs")
 			if pigs.size() == 1:
 				Global.level_completed.emit()
 
