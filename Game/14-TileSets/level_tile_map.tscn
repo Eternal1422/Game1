@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvdy5c1yste2k"]
+[gd_scene load_steps=7 format=3 uid="uid://bhj8vp1is8byd"]
 
-[ext_resource type="Texture2D" uid="uid://0wh1j7n0wfwn" path="res://Game/14-TileSets/Terrain (32x32).png" id="1_6sk7j"]
-[ext_resource type="Texture2D" uid="uid://tkq1t03dipic" path="res://Game/14-TileSets/Decorations (32x32).png" id="2_8cdim"]
+[ext_resource type="Texture2D" uid="uid://0wh1j7n0wfwn" path="res://Game/14-TileSets/Terrain (32x32).png" id="1_8sgjh"]
+[ext_resource type="Texture2D" uid="uid://tkq1t03dipic" path="res://Game/14-TileSets/Decorations (32x32).png" id="2_pqjfy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3sht0"]
 resource_name = "Platforms"
-texture = ExtResource("1_6sk7j")
+texture = ExtResource("1_8sgjh")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 1:1/0/terrain_set = 0
@@ -621,7 +621,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jklny"]
 resource_name = "Background"
-texture = ExtResource("1_6sk7j")
+texture = ExtResource("1_8sgjh")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1186,7 +1186,7 @@ texture_region_size = Vector2i(32, 32)
 17:11/0/terrains_peering_bit/top_side = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e15j3"]
-texture = ExtResource("2_8cdim")
+texture = ExtResource("2_pqjfy")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 1:1/0/terrain_set = 2
