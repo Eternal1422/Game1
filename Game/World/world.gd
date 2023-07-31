@@ -10,5 +10,4 @@ func on_level_completed():
 	get_tree().paused = true
 
 
-func _on_heart_health_pickup():
 	

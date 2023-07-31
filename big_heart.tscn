@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://ttyert6ecbxn"]
+
+[ext_resource type="Script" path="res://big_heart.gd" id="1_gcysy"]
+[ext_resource type="Texture2D" uid="uid://n5wvc3ayuf88" path="res://Game/12-Live and Coins/Big Heart Idle (18x14).png" id="2_8x6va"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlf77"]
+atlas = ExtResource("2_8x6va")
+region = Rect2(0, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gscii"]
+atlas = ExtResource("2_8x6va")
+region = Rect2(18, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4gs3"]
+atlas = ExtResource("2_8x6va")
+region = Rect2(36, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08lqo"]
+atlas = ExtResource("2_8x6va")
+region = Rect2(54, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60lef"]
+atlas = ExtResource("2_8x6va")
+region = Rect2(72, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcr43"]
+atlas = ExtResource("2_8x6va")
+region = Rect2(90, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bdbj"]
+atlas = ExtResource("2_8x6va")
+region = Rect2(108, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtahc"]
+atlas = ExtResource("2_8x6va")
+region = Rect2(126, 0, 18, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ettx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlf77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gscii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4gs3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08lqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60lef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcr43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bdbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtahc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61jfh"]
+size = Vector2(14.115, 12.6798)
+
+[node name="BigHeart" type="Node2D"]
+script = ExtResource("1_gcysy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, 0)
+scale = Vector2(1.16667, 1.14286)
+sprite_frames = SubResource("SpriteFrames_3ettx")
+animation = &"idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.71822, 0.499995)
+scale = Vector2(1.03178, 1.02525)
+shape = SubResource("RectangleShape2D_61jfh")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered" flags=18]

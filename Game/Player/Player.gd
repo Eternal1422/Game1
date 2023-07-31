@@ -136,3 +136,6 @@ func _on_right_attack_area_area_exited(area):
 
 func _on_heart_health_pickup():
 	health_bar.value += 25
+
+func _on_big_heart_big_health_pickup():
+	health_bar.value += 60
