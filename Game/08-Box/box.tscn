@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dowo8cqdyxn5t" path="res://Game/08-Box/Idle.png" id="1_dcoel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkjsy"]
-size = Vector2(21, 16)
+size = Vector2(19.4925, 14)
 
 [node name="Box" type="RigidBody2D"]
 script = ExtResource("1_d2hup")
@@ -19,11 +19,11 @@ shape = SubResource("RectangleShape2D_kkjsy")
 
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2(0.964802, 1)
-collision_layer = 8
-collision_mask = 26
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, 0)
+position = Vector2(-0.417915, 0)
 shape = SubResource("RectangleShape2D_kkjsy")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
