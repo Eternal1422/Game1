@@ -8,3 +8,7 @@ func _ready():
 func on_level_completed():
 	level_completed.show()
 	get_tree().paused = true
+
+
+func _on_heart_health_pickup():
+	

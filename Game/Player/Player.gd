@@ -119,7 +119,7 @@ func playerDied():
 	health_bar.min_value = 0
 
 func _on_bomb_player_died_from_explosion():
-	health_bar.value -= 90
+	health_bar.value -= 120
 	if health_bar.value <= 0:
 		playerDied()
 	
@@ -133,3 +133,6 @@ func _on_right_attack_area_area_entered(area):
 
 func _on_right_attack_area_area_exited(area):
 	Global.enemy_in_range = false
+
+func _on_heart_health_pickup():
+	health_bar.value += 25

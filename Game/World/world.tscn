@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmrvfrtctwy48"]
+[gd_scene load_steps=10 format=3 uid="uid://bmrvfrtctwy48"]
 
 [ext_resource type="Script" path="res://Game/World/world.gd" id="1_regn0"]
 [ext_resource type="PackedScene" uid="uid://bhj8vp1is8byd" path="res://Game/14-TileSets/level_tile_map.tscn" id="2_8hm15"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dgj28p6emgv87" path="res://Game/09-Bomb/bomb.tscn" id="6_h5n1u"]
 [ext_resource type="PackedScene" uid="uid://cxlrwdgxhrbi8" path="res://Game/03-Pig/pig.tscn" id="7_0nbfc"]
 [ext_resource type="PackedScene" uid="uid://xw72474qv6nq" path="res://Game/08-Box/box.tscn" id="8_mwhau"]
+[ext_resource type="PackedScene" uid="uid://ixtiu2mkp6yj" path="res://Game/12-Live and Coins/heart.tscn" id="9_6bpq6"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_regn0")
@@ -76,47 +77,66 @@ position = Vector2(411, 178)
 [node name="Pig2" parent="Pigs" instance=ExtResource("7_0nbfc")]
 position = Vector2(547, 81)
 
-[node name="Box5" parent="." instance=ExtResource("8_mwhau")]
+[node name="Hearts" type="Node2D" parent="."]
+
+[node name="Heart" parent="Hearts" instance=ExtResource("9_6bpq6")]
+position = Vector2(584, 348)
+
+[node name="Heart2" parent="Hearts" instance=ExtResource("9_6bpq6")]
+position = Vector2(606, 348)
+
+[node name="Heart3" parent="Hearts" instance=ExtResource("9_6bpq6")]
+position = Vector2(755, -2)
+
+[node name="Boxes" type="Node2D" parent="."]
+
+[node name="Box5" parent="Boxes" instance=ExtResource("8_mwhau")]
 position = Vector2(727, 857)
 
-[node name="Box14" parent="." instance=ExtResource("8_mwhau")]
+[node name="Box14" parent="Boxes" instance=ExtResource("8_mwhau")]
 position = Vector2(74, 346)
 
-[node name="Box16" parent="." instance=ExtResource("8_mwhau")]
+[node name="Box16" parent="Boxes" instance=ExtResource("8_mwhau")]
 position = Vector2(88, 346)
 
-[node name="Box27" parent="." instance=ExtResource("8_mwhau")]
+[node name="Box27" parent="Boxes" instance=ExtResource("8_mwhau")]
 position = Vector2(80, 331)
 
-[node name="Box28" parent="." instance=ExtResource("8_mwhau")]
-position = Vector2(559, 329)
+[node name="Box28" parent="Boxes" instance=ExtResource("8_mwhau")]
+position = Vector2(560, 329)
 
-[node name="Box29" parent="." instance=ExtResource("8_mwhau")]
-position = Vector2(556, 343)
+[node name="Box30" parent="Boxes" instance=ExtResource("8_mwhau")]
+position = Vector2(563, 313)
 
-[node name="Box17" parent="." instance=ExtResource("8_mwhau")]
+[node name="Box29" parent="Boxes" instance=ExtResource("8_mwhau")]
+position = Vector2(556, 345)
+
+[node name="Box17" parent="Boxes" instance=ExtResource("8_mwhau")]
 position = Vector2(141, 56)
 
-[node name="Box18" parent="." instance=ExtResource("8_mwhau")]
+[node name="Box18" parent="Boxes" instance=ExtResource("8_mwhau")]
 position = Vector2(744, 25)
 
-[node name="Box24" parent="." instance=ExtResource("8_mwhau")]
-position = Vector2(756, 10)
+[node name="Box31" parent="Boxes" instance=ExtResource("8_mwhau")]
+position = Vector2(624, 315)
 
-[node name="Box25" parent="." instance=ExtResource("8_mwhau")]
-position = Vector2(658, 25)
+[node name="Box21" parent="Boxes" instance=ExtResource("8_mwhau")]
+position = Vector2(631, 345)
 
-[node name="Box26" parent="." instance=ExtResource("8_mwhau")]
-position = Vector2(759, 25)
+[node name="Box20" parent="Boxes" instance=ExtResource("8_mwhau")]
+position = Vector2(627, 331)
 
-[node name="Box19" parent="." instance=ExtResource("8_mwhau")]
+[node name="Box19" parent="Boxes" instance=ExtResource("8_mwhau")]
 position = Vector2(467, 184)
 
-[node name="Box20" parent="." instance=ExtResource("8_mwhau")]
-position = Vector2(627, 330)
+[node name="Box26" parent="Boxes" instance=ExtResource("8_mwhau")]
+position = Vector2(759, 25)
 
-[node name="Box21" parent="." instance=ExtResource("8_mwhau")]
-position = Vector2(631, 345)
+[node name="Box25" parent="Boxes" instance=ExtResource("8_mwhau")]
+position = Vector2(658, 25)
+
+[node name="Box24" parent="Boxes" instance=ExtResource("8_mwhau")]
+position = Vector2(756, 10)
 
 [connection signal="playerDiedFromExplosion" from="Bombs/Bomb" to="Player" method="_on_bomb_player_died_from_explosion"]
 [connection signal="playerDiedFromExplosion" from="Bombs/Bomb4" to="Player" method="_on_bomb_player_died_from_explosion"]
@@ -130,3 +150,6 @@ position = Vector2(631, 345)
 [connection signal="playerDiedFromExplosion" from="Bombs/Bomb3" to="Player" method="_on_bomb_player_died_from_explosion"]
 [connection signal="characterHit" from="Pigs/Pig" to="Player" method="_on_pig_character_hit"]
 [connection signal="characterHit" from="Pigs/Pig2" to="Player" method="_on_pig_character_hit"]
+[connection signal="healthPickup" from="Hearts/Heart" to="Player" method="_on_heart_health_pickup"]
+[connection signal="healthPickup" from="Hearts/Heart2" to="Player" method="_on_heart_health_pickup"]
+[connection signal="healthPickup" from="Hearts/Heart3" to="Player" method="_on_heart_health_pickup"]
