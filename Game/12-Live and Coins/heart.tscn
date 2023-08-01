@@ -63,7 +63,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_aee3i")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -77,6 +77,7 @@ script = ExtResource("1_rgx6k")
 position = Vector2(-2, 0)
 scale = Vector2(1.16667, 1.14286)
 sprite_frames = SubResource("SpriteFrames_u7a0s")
+animation = &"idle"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

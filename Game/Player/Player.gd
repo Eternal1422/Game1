@@ -128,11 +128,17 @@ func _on_pig_character_hit():
 	if health_bar.value <= 0:
 		playerDied()
 
+var enemyCount = 0
+
 func _on_right_attack_area_area_entered(area):
 	Global.enemy_in_range = true
+	enemyCount += 1
 
 func _on_right_attack_area_area_exited(area):
-	Global.enemy_in_range = false
+	enemyCount -= 1
+	if enemyCount <= 0:
+		Global.enemy_in_range = false
+		
 
 func _on_heart_health_pickup():
 	health_bar.value += 25

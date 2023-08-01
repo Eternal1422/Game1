@@ -74,6 +74,7 @@ func playerHit():
 	emit_signal("characterHit")
 
 func deal_damage():
+
 	if in_attack_hitbox and Global.enemy_in_range and Global.currently_attacking and can_take_damage.time_left == 0:
 		can_take_damage.start()
 		health_bar.value -= 40
