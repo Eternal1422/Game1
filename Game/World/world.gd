@@ -4,7 +4,6 @@ extends Node2D
 @export var next_level: PackedScene
 
 func _ready():
-	on_level_completed()
 	Global.level_completed.connect(on_level_completed)
 	
 func on_level_completed():
