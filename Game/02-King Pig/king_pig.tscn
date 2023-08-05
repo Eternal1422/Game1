@@ -1,0 +1,171 @@
+[gd_scene load_steps=21 format=3 uid="uid://csc1wbfwg3hwf"]
+
+[ext_resource type="Texture2D" uid="uid://b0ku4miq4vc6n" path="res://Game/02-King Pig/Idle (38x28).png" id="3_v0l86"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35jc0"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(0, 0, 38, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd1qj"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(38, 0, 38, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omxd4"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(76, 0, 38, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubfc4"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(114, 0, 38, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0pba"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(152, 0, 38, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nfgx"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(190, 0, 38, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bspa"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(228, 0, 38, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efyts"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(266, 0, 38, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asr72"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(304, 0, 38, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nkjk"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(342, 0, 38, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhusr"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(380, 0, 38, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u1a1"]
+atlas = ExtResource("3_v0l86")
+region = Rect2(418, 0, 38, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s5m7l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35jc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nd1qj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omxd4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubfc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0pba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nfgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bspa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efyts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asr72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8nkjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhusr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u1a1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hnag8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ki7dk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0d8v0"]
+size = Vector2(198.102, 32.25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2q1p7"]
+radius = 268.502
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsywh"]
+size = Vector2(12, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bx8c7"]
+size = Vector2(97.75, 32.25)
+
+[node name="KingPig" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s5m7l")
+animation = &"idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hnag8")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 4)
+shape = SubResource("RectangleShape2D_ki7dk")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+texture_filter = 2
+offset_left = -32.75
+offset_top = -12.0
+offset_right = 34.25
+offset_bottom = -7.0
+max_value = 1500.0
+value = 1500.0
+show_percentage = false
+
+[node name="MeleeDetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeDetectionArea"]
+position = Vector2(0, 8.625)
+shape = SubResource("RectangleShape2D_0d8v0")
+
+[node name="RangedDetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangedDetectionArea"]
+visible = false
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_2q1p7")
+
+[node name="LeftMeleeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftMeleeArea"]
+position = Vector2(7, 4.5)
+shape = SubResource("RectangleShape2D_dsywh")
+
+[node name="RightMeleeArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightMeleeArea"]
+position = Vector2(-5, 4.5)
+shape = SubResource("RectangleShape2D_dsywh")
+
+[node name="GroundSlamArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GroundSlamArea"]
+position = Vector2(0, 8.75)
+shape = SubResource("RectangleShape2D_bx8c7")

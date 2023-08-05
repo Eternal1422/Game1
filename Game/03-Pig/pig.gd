@@ -74,12 +74,11 @@ func playerHit():
 	emit_signal("characterHit")
 
 func deal_damage():
-
 	if in_attack_hitbox and Global.enemy_in_range and Global.currently_attacking and can_take_damage.time_left == 0:
 		can_take_damage.start()
 		health_bar.value -= 40
 		if health_bar.value <= 0: 
-			queue_free()
+			queue_free() 
 			var pigs = get_tree().get_nodes_in_group("Pigs")
 			pig.remove_from_group("Pigs")
 			if pigs.size() == 1:
