@@ -1,9 +1,16 @@
-[gd_scene load_steps=36 format=3 uid="uid://cxlrwdgxhrbi8"]
+[gd_scene load_steps=41 format=3 uid="uid://cxlrwdgxhrbi8"]
 
 [ext_resource type="Script" path="res://Game/03-Pig/pig.gd" id="1_0rloe"]
+[ext_resource type="Shader" path="res://Game/03-Pig/pig.gdshader" id="2_1cqkf"]
 [ext_resource type="Texture2D" uid="uid://t772rip1vmkf" path="res://Game/03-Pig/Attack (34x28).png" id="2_o88a0"]
 [ext_resource type="Texture2D" uid="uid://clptth51uar0k" path="res://Game/03-Pig/Idle (34x28).png" id="3_46cs6"]
 [ext_resource type="Texture2D" uid="uid://ddonk3un1krhx" path="res://Game/03-Pig/Run (34x28).png" id="4_wh7me"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_olsix"]
+resource_local_to_scene = true
+shader = ExtResource("2_1cqkf")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifer = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oi7lm"]
 atlas = ExtResource("2_o88a0")
@@ -191,6 +198,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [SubResource("SpriteFrames_0le26")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/flash_modifer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_fbhd7"]
 resource_name = "attack"
@@ -239,6 +258,43 @@ _data = {
 "attack": SubResource("Animation_fbhd7")
 }
 
+[sub_resource type="Animation" id="Animation_0e4rr"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_modifer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_q384p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_modifer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cos2q"]
+_data = {
+"RESET": SubResource("Animation_q384p"),
+"hit": SubResource("Animation_0e4rr")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3y8uf"]
 size = Vector2(150, 88)
 
@@ -254,17 +310,25 @@ size = Vector2(13.5, 22)
 size = Vector2(18, 16)
 
 [node name="Pig" type="CharacterBody2D" groups=["Pigs"]]
+material = SubResource("ShaderMaterial_olsix")
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_0rloe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_0le26")
 animation = &"idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_mh6vu")
+}
+
+[node name="AttackedAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cos2q")
 }
 
 [node name="DetectionArea" type="Area2D" parent="."]

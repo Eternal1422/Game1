@@ -14,7 +14,12 @@ var in_attack_hitbox = false
 @onready var health_bar = $HealthBar
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var attacked_animation_player = $AttackedAnimationPlayer
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+func _ready():
+	material.set_shader_parameter('flash_modifer', 0)
 	
 func _physics_process(delta):
 	
@@ -76,6 +81,7 @@ func playerHit():
 func deal_damage():
 	if in_attack_hitbox and Global.enemy_in_range and Global.currently_attacking and can_take_damage.time_left == 0:
 		can_take_damage.start()
+		attacked_animation_player.play('hit')
 		health_bar.value -= 40
 		if health_bar.value <= 0: 
 			queue_free() 
