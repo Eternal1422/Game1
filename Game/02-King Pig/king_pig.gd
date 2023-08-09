@@ -17,7 +17,7 @@ var in_attack_hitbox = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 	
 func _physics_process(delta):
-#	deal_damage()
+	deal_damage()
 	if not is_on_floor():
 		velocity.y += gravity * delta
 #
@@ -67,28 +67,27 @@ func _physics_process(delta):
 #func playerHit():
 #	emit_signal("characterHit")
 #
-#func deal_damage():
-#	if in_attack_hitbox and Global.enemy_in_range and Global.currently_attacking and can_take_damage.time_left == 0:
-#		can_take_damage.start()
-#		health_bar.value -= 40
-#		if health_bar.value <= 0: 
-#			queue_free() 
-#			var pigs = get_tree().get_nodes_in_group("Pigs")
-#			pig.remove_from_group("Pigs")
-#			if pigs.size() == 1:
-#				Global.level_completed.emit()
-#
-#func _on_attack_hit_box_area_entered(area):
-#	in_attack_hitbox = true
-#
-#func _on_attack_hit_box_area_exited(area):
-#	in_attack_hitbox = false
+func deal_damage():
+	if in_attack_hitbox and Global.enemy_in_range and Global.currently_attacking and can_take_damage.time_left == 0:
+		can_take_damage.start()
+		health_bar.value -= 40
+		if health_bar.value <= 0: 
+			queue_free() 
 
 
 func _on_melee_detection_area_area_entered(area):
 	player_chase = true
 	player = area
 	
+	
 func _on_melee_detection_area_area_exited(area):
 	player_chase = false
 	player = null
+
+
+func _on_collision_detection_area_entered(area):
+	in_attack_hitbox = true
+
+
+func _on_collision_detection_area_exited(area):
+	in_attack_hitbox = false
