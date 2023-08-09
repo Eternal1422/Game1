@@ -160,7 +160,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hefij")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -306,6 +306,8 @@ script = ExtResource("1_qeg7f")
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_s5m7l")
 animation = &"death"
+frame = 2
+frame_progress = 0.799213
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -381,8 +383,7 @@ offset_left = -32.75
 offset_top = -12.0
 offset_right = 34.25
 offset_bottom = -7.0
-max_value = 750.0
-value = 750.0
+value = 100.0
 show_percentage = false
 
 [connection signal="area_entered" from="CollisionDetection" to="." method="_on_collision_detection_area_entered"]

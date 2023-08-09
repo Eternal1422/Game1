@@ -8,6 +8,7 @@ var player = null
 var state = ''
 var attacking = false
 var in_attack_hitbox = false
+var dying = false
 
 @onready var king_pig = $"."
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -27,7 +28,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 #
-	if player_chase and not attacking:
+	if player_chase and not attacking and not dying:
 		var direction = (player.global_position - global_position).normalized()
 		if direction.x < 0:
 			king_pig.scale.x = scale.y * 1
@@ -39,7 +40,7 @@ func _physics_process(delta):
 		move_and_slide()
 		animated_sprite_2d.play(state
 		)  
-	elif not attacking:
+	elif not attacking and not dying:
 		state = 'idle'
 		animated_sprite_2d.play(state)  
 
@@ -79,8 +80,11 @@ func deal_damage():
 		attacked_animation_player.play('hit')
 		health_bar.value -= 40
 		if health_bar.value <= 0: 
+			dying = true
+			animated_sprite_2d.play('death')
+			await animated_sprite_2d.animation_finished
 			queue_free() 
-
+		
 
 func _on_melee_detection_area_area_entered(area):
 	player_chase = true

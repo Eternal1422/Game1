@@ -1,9 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://cxlrwdgxhrbi8"]
+[gd_scene load_steps=46 format=3 uid="uid://cxlrwdgxhrbi8"]
 
 [ext_resource type="Script" path="res://Game/03-Pig/pig.gd" id="1_0rloe"]
 [ext_resource type="Shader" path="res://Game/03-Pig/pig.gdshader" id="2_1cqkf"]
 [ext_resource type="Texture2D" uid="uid://t772rip1vmkf" path="res://Game/03-Pig/Attack (34x28).png" id="2_o88a0"]
 [ext_resource type="Texture2D" uid="uid://clptth51uar0k" path="res://Game/03-Pig/Idle (34x28).png" id="3_46cs6"]
+[ext_resource type="Texture2D" uid="uid://cnlvk7hvbxre5" path="res://Game/03-Pig/Dead (34x28).png" id="4_0ikvy"]
 [ext_resource type="Texture2D" uid="uid://ddonk3un1krhx" path="res://Game/03-Pig/Run (34x28).png" id="4_wh7me"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_olsix"]
@@ -31,6 +32,22 @@ region = Rect2(102, 0, 34, 28)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gl5sp"]
 atlas = ExtResource("2_o88a0")
 region = Rect2(136, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghwd3"]
+atlas = ExtResource("4_0ikvy")
+region = Rect2(0, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gulsq"]
+atlas = ExtResource("4_0ikvy")
+region = Rect2(34, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lyrj"]
+atlas = ExtResource("4_0ikvy")
+region = Rect2(68, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl2fk"]
+atlas = ExtResource("4_0ikvy")
+region = Rect2(102, 0, 34, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nxlwq"]
 atlas = ExtResource("3_46cs6")
@@ -120,6 +137,23 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghwd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gulsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lyrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl2fk")
+}],
+"loop": false,
+"name": &"death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -319,7 +353,7 @@ script = ExtResource("1_0rloe")
 texture_filter = 1
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_0le26")
-animation = &"idle"
+animation = &"death"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
