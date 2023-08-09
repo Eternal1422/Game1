@@ -13,25 +13,25 @@
 [ext_resource type="Shader" path="res://Game/03-Pig/pig.gdshader" id="9_b07dd"]
 [ext_resource type="PackedScene" uid="uid://ttyert6ecbxn" path="res://big_heart.tscn" id="10_54my5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jkaw2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6qx6q"]
 resource_local_to_scene = true
 shader = ExtResource("9_b07dd")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifer = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qmvog"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvti7"]
 resource_local_to_scene = true
 shader = ExtResource("9_b07dd")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifer = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_prs38"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_87gxr"]
 resource_local_to_scene = true
 shader = ExtResource("9_b07dd")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifer = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wgwd2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gtpj5"]
 resource_local_to_scene = true
 shader = ExtResource("9_b07dd")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -100,19 +100,19 @@ position = Vector2(595, 341)
 [node name="Pigs" type="Node" parent="."]
 
 [node name="Pig" parent="Pigs" instance=ExtResource("7_0nbfc")]
-material = SubResource("ShaderMaterial_jkaw2")
+material = SubResource("ShaderMaterial_6qx6q")
 position = Vector2(411, 178)
 
 [node name="Pig2" parent="Pigs" instance=ExtResource("7_0nbfc")]
-material = SubResource("ShaderMaterial_qmvog")
+material = SubResource("ShaderMaterial_xvti7")
 position = Vector2(547, 81)
 
 [node name="Pig3" parent="Pigs" instance=ExtResource("7_0nbfc")]
-material = SubResource("ShaderMaterial_prs38")
+material = SubResource("ShaderMaterial_87gxr")
 position = Vector2(600, 885)
 
 [node name="Pig4" parent="Pigs" instance=ExtResource("7_0nbfc")]
-material = SubResource("ShaderMaterial_wgwd2")
+material = SubResource("ShaderMaterial_gtpj5")
 position = Vector2(268, 822)
 rotation = -3.14159
 scale = Vector2(1, -1)
