@@ -353,7 +353,8 @@ script = ExtResource("1_0rloe")
 texture_filter = 1
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_0le26")
-animation = &"death"
+animation = &"attack"
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

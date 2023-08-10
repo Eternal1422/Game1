@@ -77,7 +77,8 @@ func _on_right_attack_area_area_exited(area):
 	animated_sprite_2d.flip_h = false
 	
 func playerHit():
-	emit_signal("characterHit")
+	if attacking:
+		emit_signal("characterHit")
 
 func deal_damage():
 	if in_attack_hitbox and Global.enemy_in_range and Global.currently_attacking and can_take_damage.time_left == 0:

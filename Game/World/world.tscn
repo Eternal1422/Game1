@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bmrvfrtctwy48"]
+[gd_scene load_steps=15 format=3 uid="uid://bmrvfrtctwy48"]
 
 [ext_resource type="Script" path="res://Game/World/world.gd" id="1_regn0"]
 [ext_resource type="PackedScene" uid="uid://bhj8vp1is8byd" path="res://Game/14-TileSets/level_tile_map.tscn" id="2_8hm15"]
@@ -13,25 +13,13 @@
 [ext_resource type="Shader" path="res://Game/03-Pig/pig.gdshader" id="9_b07dd"]
 [ext_resource type="PackedScene" uid="uid://ttyert6ecbxn" path="res://big_heart.tscn" id="10_54my5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6qx6q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h4jar"]
 resource_local_to_scene = true
 shader = ExtResource("9_b07dd")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifer = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xvti7"]
-resource_local_to_scene = true
-shader = ExtResource("9_b07dd")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_modifer = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_87gxr"]
-resource_local_to_scene = true
-shader = ExtResource("9_b07dd")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_modifer = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gtpj5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxnwb"]
 resource_local_to_scene = true
 shader = ExtResource("9_b07dd")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -100,22 +88,12 @@ position = Vector2(595, 341)
 [node name="Pigs" type="Node" parent="."]
 
 [node name="Pig" parent="Pigs" instance=ExtResource("7_0nbfc")]
-material = SubResource("ShaderMaterial_6qx6q")
+material = SubResource("ShaderMaterial_h4jar")
 position = Vector2(411, 178)
 
 [node name="Pig2" parent="Pigs" instance=ExtResource("7_0nbfc")]
-material = SubResource("ShaderMaterial_xvti7")
+material = SubResource("ShaderMaterial_nxnwb")
 position = Vector2(547, 81)
-
-[node name="Pig3" parent="Pigs" instance=ExtResource("7_0nbfc")]
-material = SubResource("ShaderMaterial_87gxr")
-position = Vector2(600, 885)
-
-[node name="Pig4" parent="Pigs" instance=ExtResource("7_0nbfc")]
-material = SubResource("ShaderMaterial_gtpj5")
-position = Vector2(268, 822)
-rotation = -3.14159
-scale = Vector2(1, -1)
 
 [node name="Hearts" type="Node" parent="."]
 

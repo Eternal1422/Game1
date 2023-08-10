@@ -145,3 +145,9 @@ func _on_heart_health_pickup():
 
 func _on_big_heart_big_health_pickup():
 	health_bar.value += 60
+
+
+func _on_king_pig_boss_hit():
+	health_bar.value -= 65
+	if health_bar.value <= 0:
+		playerDied()

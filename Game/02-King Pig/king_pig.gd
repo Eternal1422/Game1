@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal characterHit
+signal bossHit
 
 var speed = 60.0
 var player_chase = false 
@@ -24,6 +24,7 @@ func _ready():
 	material.set_shader_parameter('flash_modifer', 0)
 	
 func _physics_process(delta):
+	print(attacking)
 	deal_damage()
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -43,36 +44,10 @@ func _physics_process(delta):
 	elif not attacking and not dying:
 		state = 'idle'
 		animated_sprite_2d.play(state)  
-
-
-
-#func _on_left_attack_area_area_entered(area):
-#	attacking = true
-#	while attacking:
-#		state = 'attack'
-#		animated_sprite_2d.play(state)
-#		animation_player.play("attack")
-#		await animation_player.animation_finished
 #
-#func _on_left_attack_area_area_exited(area):
-#	attacking = false
-#	animated_sprite_2d.flip_h = false
-#
-#func _on_right_attack_area_area_entered(area):
-#	attacking = true
-#	animated_sprite_2d.flip_h = true
-#	while attacking:
-#		state = 'attack'
-#		animated_sprite_2d.play(state)
-#		animation_player.play("attack")
-#		await animation_player.animation_finished
-#
-#func _on_right_attack_area_area_exited(area):
-#	attacking = false
-#	animated_sprite_2d.flip_h = false
-#
-#func playerHit():
-#	emit_signal("characterHit")
+func playerHit():
+	if attacking:
+		emit_signal("bossHit")
 #
 func deal_damage():
 	if in_attack_hitbox and Global.enemy_in_range and Global.currently_attacking and can_take_damage.time_left == 0:
@@ -102,3 +77,29 @@ func _on_collision_detection_area_entered(area):
 
 func _on_collision_detection_area_exited(area):
 	in_attack_hitbox = false
+
+func _on_left_melee_area_area_entered(area):
+	attacking = true
+	while attacking and not dying:
+		animation_player.stop()
+		animated_sprite_2d.stop()
+		animation_player.play("hit")
+		await animation_player.animation_finished
+
+
+func _on_left_melee_area_area_exited(area):
+	attacking = false
+
+
+func _on_right_melee_area_area_entered(area):
+	attacking = true
+	while attacking and not dying:
+		animation_player.stop()
+		animated_sprite_2d.stop()
+		animated_sprite_2d.play('attack')
+		animation_player.play("hit")
+		await animation_player.animation_finished
+
+
+func _on_right_melee_area_area_exited(area):
+	attacking = false
