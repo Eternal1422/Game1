@@ -22,11 +22,13 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	material.set_shader_parameter('flash_modifer', 0)
 	
-func _physics_process(delta):
-	
-	deal_damage()
+func _process(delta):
+	print(is_on_floor())
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	
+func _physics_process(delta):
+	deal_damage()
 		
 	if player_chase and not attacking and not dying:
 		var direction = (player.global_position - global_position).normalized()

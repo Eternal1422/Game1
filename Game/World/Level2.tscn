@@ -25,22 +25,27 @@ position = Vector2(315, 232)
 [node name="Bomb" parent="." instance=ExtResource("4_8qwdl")]
 position = Vector2(432, 85)
 
+[node name="Bomb2" parent="." instance=ExtResource("4_8qwdl")]
+position = Vector2(207, 85)
+
 [node name="Heart" parent="." instance=ExtResource("5_oe34p")]
 position = Vector2(421, 92)
 
 [node name="Heart2" parent="." instance=ExtResource("5_oe34p")]
-position = Vector2(443, 92)
-
-[node name="Bomb2" parent="." instance=ExtResource("4_8qwdl")]
-position = Vector2(208, 85)
+position = Vector2(442, 92)
 
 [node name="Heart3" parent="." instance=ExtResource("5_oe34p")]
 position = Vector2(197, 92)
 
 [node name="Heart4" parent="." instance=ExtResource("5_oe34p")]
-position = Vector2(219, 92)
+position = Vector2(218, 92)
 
 [node name="BigHeart" parent="." instance=ExtResource("6_eowan")]
 position = Vector2(319, 26)
 
 [connection signal="bossHit" from="KingPig" to="Player" method="_on_king_pig_boss_hit"]
+[connection signal="healthPickup" from="Heart" to="Player" method="_on_heart_health_pickup"]
+[connection signal="healthPickup" from="Heart2" to="Player" method="_on_heart_health_pickup"]
+[connection signal="healthPickup" from="Heart3" to="Player" method="_on_heart_health_pickup"]
+[connection signal="healthPickup" from="Heart4" to="Player" method="_on_heart_health_pickup"]
+[connection signal="bigHealthPickup" from="BigHeart" to="Player" method="_on_big_heart_big_health_pickup"]

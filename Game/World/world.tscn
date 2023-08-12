@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmrvfrtctwy48"]
+[gd_scene load_steps=16 format=3 uid="uid://bmrvfrtctwy48"]
 
 [ext_resource type="Script" path="res://Game/World/world.gd" id="1_regn0"]
 [ext_resource type="PackedScene" uid="uid://bhj8vp1is8byd" path="res://Game/14-TileSets/level_tile_map.tscn" id="2_8hm15"]
@@ -12,14 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://ixtiu2mkp6yj" path="res://Game/12-Live and Coins/heart.tscn" id="9_6bpq6"]
 [ext_resource type="Shader" path="res://Game/03-Pig/pig.gdshader" id="9_b07dd"]
 [ext_resource type="PackedScene" uid="uid://ttyert6ecbxn" path="res://big_heart.tscn" id="10_54my5"]
+[ext_resource type="PackedScene" uid="uid://dnfag0kx21lne" path="res://boss_ranged_attack.tscn" id="13_v4ybg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h4jar"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nqvj2"]
 resource_local_to_scene = true
 shader = ExtResource("9_b07dd")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifer = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nxnwb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0uko"]
 resource_local_to_scene = true
 shader = ExtResource("9_b07dd")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -88,11 +89,11 @@ position = Vector2(595, 341)
 [node name="Pigs" type="Node" parent="."]
 
 [node name="Pig" parent="Pigs" instance=ExtResource("7_0nbfc")]
-material = SubResource("ShaderMaterial_h4jar")
+material = SubResource("ShaderMaterial_nqvj2")
 position = Vector2(411, 178)
 
 [node name="Pig2" parent="Pigs" instance=ExtResource("7_0nbfc")]
-material = SubResource("ShaderMaterial_nxnwb")
+material = SubResource("ShaderMaterial_n0uko")
 position = Vector2(547, 81)
 
 [node name="Hearts" type="Node" parent="."]
@@ -158,6 +159,9 @@ position = Vector2(759, 25)
 
 [node name="BigHeart" parent="." instance=ExtResource("10_54my5")]
 position = Vector2(315, 282)
+
+[node name="BossRangedAttack" parent="." instance=ExtResource("13_v4ybg")]
+position = Vector2(53, 227)
 
 [connection signal="next_level" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_next_level"]
 [connection signal="playerDiedFromExplosion" from="Bombs/Bomb" to="Player" method="_on_bomb_player_died_from_explosion"]

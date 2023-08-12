@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://csc1wbfwg3hwf"]
+[gd_scene load_steps=50 format=3 uid="uid://csc1wbfwg3hwf"]
 
 [ext_resource type="Shader" path="res://Game/03-Pig/pig.gdshader" id="1_pthbu"]
 [ext_resource type="Script" path="res://Game/02-King Pig/king_pig.gd" id="1_qeg7f"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://khgopgyjy25o" path="res://Game/02-King Pig/Dead (38x28).png" id="3_hshjp"]
 [ext_resource type="Texture2D" uid="uid://b0ku4miq4vc6n" path="res://Game/02-King Pig/Idle (38x28).png" id="3_v0l86"]
 [ext_resource type="Texture2D" uid="uid://72o2xerbllpu" path="res://Game/02-King Pig/Jump (38x28).png" id="5_tx6j0"]
+[ext_resource type="PackedScene" uid="uid://dnfag0kx21lne" path="res://boss_ranged_attack.tscn" id="8_57joc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uayu5"]
 shader = ExtResource("1_pthbu")
@@ -405,7 +406,7 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightMeleeArea"]
-position = Vector2(-6.34375, 4.5)
+position = Vector2(9.75, -1.5)
 shape = SubResource("RectangleShape2D_dsywh")
 
 [node name="GroundSlamArea" type="Area2D" parent="."]
@@ -420,6 +421,7 @@ wait_time = 0.65
 one_shot = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+visible = false
 self_modulate = Color(0, 1, 0, 1)
 texture_filter = 2
 offset_left = -32.75
@@ -428,6 +430,9 @@ offset_right = 34.25
 offset_bottom = -7.0
 value = 100.0
 show_percentage = false
+
+[node name="RigidBody2D" parent="." instance=ExtResource("8_57joc")]
+position = Vector2(1.25, 4.25)
 
 [connection signal="area_entered" from="CollisionDetection" to="." method="_on_collision_detection_area_entered"]
 [connection signal="area_exited" from="CollisionDetection" to="." method="_on_collision_detection_area_exited"]
